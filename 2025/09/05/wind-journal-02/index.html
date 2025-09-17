@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="In my previous post, I discussed my motivation for creating Wind Journal. To briefly re-cap: I’m a new father 🎉👶! With less time to spend wing foiling, I need to choose my lake days wisely. Enter Wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wind Journal: Minimum Viable Product">
+<meta property="og:url" content="https://je55ek.github.io/2025/09/05/wind-journal-02/index.html">
+<meta property="og:site_name" content="Jesse Kelly">
+<meta property="og:description" content="In my previous post, I discussed my motivation for creating Wind Journal. To briefly re-cap: I’m a new father 🎉👶! With less time to spend wing foiling, I need to choose my lake days wisely. Enter Wi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-05T18:05:37.000Z">
+<meta property="article:modified_time" content="2025-09-15T17:41:32.059Z">
+<meta property="article:author" content="Jesse Kelly">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Wind Journal">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Wind Journal: Minimum Viable Product</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Posts</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/09/04/wind-journal-01/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://je55ek.github.io/2025/09/05/wind-journal-02/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&text=Wind Journal: Minimum Viable Product"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&is_video=false&description=Wind Journal: Minimum Viable Product"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Wind Journal: Minimum Viable Product&body=Check out this article: https://je55ek.github.io/2025/09/05/wind-journal-02/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&name=Wind Journal: Minimum Viable Product&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://je55ek.github.io/2025/09/05/wind-journal-02/&t=Wind Journal: Minimum Viable Product"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimum-viable-product-MVP"><span class="toc-number">1.</span> <span class="toc-text">Minimum viable product (MVP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Label-selection"><span class="toc-number">2.</span> <span class="toc-text">Label selection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-rating-%F0%9F%91%8D-or-%F0%9F%91%8E"><span class="toc-number">2.1.</span> <span class="toc-text">Session rating: 👍 or 👎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-rating-%E2%AD%90-to-%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90"><span class="toc-number">2.2.</span> <span class="toc-text">Session rating: ⭐ to ⭐⭐⭐⭐⭐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Power-rating-the-Goldilocks-zone"><span class="toc-number">2.3.</span> <span class="toc-text">Power rating: the Goldilocks zone</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feature-selection"><span class="toc-number">3.</span> <span class="toc-text">Feature selection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP-user-stories"><span class="toc-number">4.</span> <span class="toc-text">MVP user stories</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logging-a-session"><span class="toc-number">4.1.</span> <span class="toc-text">Logging a session</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reviewing-past-sessions"><span class="toc-number">4.2.</span> <span class="toc-text">Reviewing past sessions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Editing-or-deleting-a-session"><span class="toc-number">4.3.</span> <span class="toc-text">Editing or deleting a session</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Where%E2%80%99s-the-rest-of-the-functionality"><span class="toc-number">5.</span> <span class="toc-text">Where’s the rest of the functionality?</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Wind Journal: Minimum Viable Product
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jesse Kelly</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-09-05T18:05:37.000Z" class="dt-published" itemprop="datePublished">2025-09-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/ML/" rel="tag">ML</a>, <a class="p-category" href="/tags/Wind-Journal/" rel="tag">Wind Journal</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>In my <a href="/2025/09/04/wind-journal-01/" title="Wind Journal: A Tool for Wind Sports Enthusiasts">previous post</a>, I discussed my motivation for creating <em>Wind Journal</em>. To briefly re-cap: I’m a new father 🎉👶! With less time to spend <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wing_foiling">wing foiling</a>, I need to choose my lake days wisely.
+Enter Wind Journal, a digital extension of the pen-and-paper “wind journal” concept for tracking and identifying conditions that yield good days for wind sports sessions.</p>
+<h3 id="Minimum-viable-product-MVP"><a href="#Minimum-viable-product-MVP" class="headerlink" title="Minimum viable product (MVP)"></a>Minimum viable product (MVP)</h3><p>At the beginning of any project, it’s fun to dream about all of the cool functionality one aspires to deliver.
+In the case of Wind Journal, I’m already imagining how machine learning could help make sense of data from my own and others’ wind sport sessions to predict the conditions that lead to great days on the water.</p>
+<p>When starting a machine learning project, in particular, it’s important not to put the cart before the horse.
+It’s tempting to dive right into crafting a clever model, but it’s prudent to remember that “Data trumps all”, as said in <a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/overfitting">Google’s Machine Learning Crash Course</a>.</p>
+<blockquote><p>The quality and size of the dataset matters much more than which shiny algorithm you use to build your model.</p>
+<footer><strong>Google</strong><cite><a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/overfitting">ML Crash Course</a></cite></footer></blockquote>
+
+<p>A wind journal is a valuable tool for data collection even <em>without</em> machine learning. In the first iteration of Wind Journal, I want to focus on a user experience that provides enough value to users that they want to keep using it.
+The more usage Wind Journal sees, the more data we’ll accumulate.
+Eventually, we’ll have enough data that we can deliver additional value to users through features powered by machine learning.</p>
+<h3 id="Label-selection"><a href="#Label-selection" class="headerlink" title="Label selection"></a>Label selection</h3><p>That said, it’s still important to consider the kind of data we’ll need to train machine learning models in future iterations.</p>
+<p>It would be a shame to gather a high-quality corpus of data only to find that we’re missing the <em>one</em> crucial attribute we need to train a model that delivers value.</p>
+<p>For Wind Journal, a prime candidate for that <em>one</em> crucial attribute is the label we ask users to provide for the “goodness” of a particular session.
+<a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/overfitting/labels">Google’s ML Crash Course</a> identifies two types of labels:</p>
+<ul>
+<li><strong>Direct labels</strong> are the same as the labels predicted by your model.</li>
+<li><strong>Proxy labels</strong> are different from, but correlated with, the labels predicted by your model.</li>
+</ul>
+<p>It goes on to say, “Direct labels are generally better than proxy labels. If your dataset provides a possible direct label, you should probably use it.”</p>
+<p>So what exactly is it we want Wind Journal to be able to predict? Let’s think through a few candidates for direct labels.</p>
+<h4 id="Session-rating-👍-or-👎"><a href="#Session-rating-👍-or-👎" class="headerlink" title="Session rating: 👍 or 👎"></a>Session rating: 👍 or 👎</h4><p>The simplest label we could ask users to give to a wind sports session is an indication of whether the session was “good” (👍) or “not good” (👎).</p>
+<p>There are a few drawbacks to “session rating”, though:</p>
+<ul>
+<li>Sometimes you might be willing to accept a “mediocre” day just so you can be out on the water.
+It would be nice if the model could be more expressive than just “good” and “not good”.</li>
+<li>Factors beyond wind conditions and equipment selection can contribute to a “bad” day.
+Maybe the wind was perfect and you had just the right size kite and board, but there was a lot of boat traffic to dodge, you kept running into patches of <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hydrilla">hydrilla</a>, and you’re exhausted from taking care of a three-month-old the previous night.</li>
+</ul>
+<h4 id="Session-rating-⭐-to-⭐⭐⭐⭐⭐"><a href="#Session-rating-⭐-to-⭐⭐⭐⭐⭐" class="headerlink" title="Session rating: ⭐ to ⭐⭐⭐⭐⭐"></a>Session rating: ⭐ to ⭐⭐⭐⭐⭐</h4><p>We could have users rate sessions from one to five stars.
+This would address the drawback of a thumbs up&#x2F;down label being too coarse to model a “mediocre” session.</p>
+<p>Whether binary or multi-class, though, “session rating” is still susceptible to confounding variables.</p>
+<h4 id="Power-rating-the-Goldilocks-zone"><a href="#Power-rating-the-Goldilocks-zone" class="headerlink" title="Power rating: the Goldilocks zone"></a>Power rating: the Goldilocks zone</h4><p>What’s the main thing that I want to know before deciding to drive out to the lake?
+I want to know if the wind is in the “Goldilocks zone” for power generation.
+Whether you’re kite surfing, wing foiling, sailing, or windsurfing, you’ll typically experience three kinds of sessions:</p>
+<p> 🐢 Underpowered – For me, these are the days I hardly get up on the foil.</p>
+<p> 💥 Overpowered – If you’re a sailor struggling to gain ground without capsizing, you might be experiencing conditions that yield too much power for your vessel.</p>
+<p>👌 Just right – The power is there when you need it, but not so overwhelming that you can’t dump it.</p>
+<p>Asking users to assign one of these three labels to a session has several advantages:</p>
+<ul>
+<li>Whether or not there was enough power for your particular equipment and sport is a more objective measure than whether or not you had a “good” session.</li>
+<li>Rating the power level for the entire session naturally “integrates over” the wind conditions during that session.
+Even if the average wind speed wasn’t very high, if the gusts were fast and frequent enough you may still have left the water feeling like you had plenty of power at your disposal.</li>
+<li>Compared to a binary measure of “enough” or “not enough” wind, classifying sessions into three categories could help a linear model resolve the conditions that provide “too much of a good thing”.</li>
+</ul>
+<p>A tripartite power rating seems like a good direct label.
+It’s expressive without being overly complex, easy to solicit from users, of high value to users considering whether to commit to a session, and relatively immune to confounding variables.</p>
+<p>For the first iteration of Wind Journal, then, I’ll ask users to give each of their sessions a power rating.</p>
+<h3 id="Feature-selection"><a href="#Feature-selection" class="headerlink" title="Feature selection"></a>Feature selection</h3><p>In addition to identifying the label we’ll collect for each of our users’ sessions,
+it’s worth thinking about the features that may help predict that label.
+Here are some candidates:</p>
+<ul>
+<li>Actual wind conditions measured at various locations near the session spot during the session time (more on this later)</li>
+<li>Wind conditions predicted by weather forecasts for the session spot during the session time<ul>
+<li>Average wind speed in the N-S and E-W directions</li>
+<li>Gust speed in the N-S and E-W directions</li>
+</ul>
+</li>
+<li>User profile<ul>
+<li>Weight</li>
+<li>Skill level</li>
+</ul>
+</li>
+<li>Equipment profile (with different dimensions per sport). For example:<ul>
+<li>Surface area of wing</li>
+<li>Surface area of hydrofoils</li>
+<li>Combined weight of board, mast, foils, and fuselage</li>
+<li>Volume of board</li>
+</ul>
+</li>
+</ul>
+<h3 id="MVP-user-stories"><a href="#MVP-user-stories" class="headerlink" title="MVP user stories"></a>MVP user stories</h3><p>Keeping in mind the labels and features we’re interested in collecting, let’s sketch out some user stories for the Wind Journal MVP.</p>
+<h4 id="Logging-a-session"><a href="#Logging-a-session" class="headerlink" title="Logging a session"></a>Logging a session</h4><p>As a wing foiler or windsurfer, I want to be able to record the time and location of a session along with the equipment I used during that session, and whether I was underpowered, overpowered, or well-powered during the session.
+I want the forecast and actual wind conditions for my session to be fetched automatically based on the time and location I record.</p>
+<h4 id="Reviewing-past-sessions"><a href="#Reviewing-past-sessions" class="headerlink" title="Reviewing past sessions"></a>Reviewing past sessions</h4><p>As someone who has used Wind Journal to log wind sports sessions, I want to be able to see a compact list of my past sessions.
+I want to be able to select a particular session and see all of the data associated with that session.</p>
+<h4 id="Editing-or-deleting-a-session"><a href="#Editing-or-deleting-a-session" class="headerlink" title="Editing or deleting a session"></a>Editing or deleting a session</h4><p>As a Wind Journal user with an existing logged session, I want to be able to change the data I have entered for that session.
+I also want to be able to delete sessions I have created.</p>
+<h3 id="Where’s-the-rest-of-the-functionality"><a href="#Where’s-the-rest-of-the-functionality" class="headerlink" title="Where’s the rest of the functionality?"></a>Where’s the rest of the functionality?</h3><p>That’s it for now! I’m a big believer in developing in small bites, getting feedback from users, and iterating.
+The three stories above are all that I think is needed for Wind Journal to start providing value to users.</p>
+<p>Undoubtedly I can think of lots of additional features that would be useful (supporting sports beyond wing foiling and windsurfing, organizing sessions by location, authenticating using single sign-on, sharing sessions with other users, dedicated mobile apps, the list goes on…) but those features aren’t <em>required</em> to start providing value to users, so I’m not going to give them any mind-share right now.</p>
+<p>In my next post, I’ll break down the three MVP user stories into development tasks, and maybe even get into some wireframing.</p>
+<p>I’m excited to be making progress on Wind Journal, and to be sharing this associated <em>development journal</em>!</p>
+<p>Until next time!</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimum-viable-product-MVP"><span class="toc-number">1.</span> <span class="toc-text">Minimum viable product (MVP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Label-selection"><span class="toc-number">2.</span> <span class="toc-text">Label selection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-rating-%F0%9F%91%8D-or-%F0%9F%91%8E"><span class="toc-number">2.1.</span> <span class="toc-text">Session rating: 👍 or 👎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-rating-%E2%AD%90-to-%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90%E2%AD%90"><span class="toc-number">2.2.</span> <span class="toc-text">Session rating: ⭐ to ⭐⭐⭐⭐⭐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Power-rating-the-Goldilocks-zone"><span class="toc-number">2.3.</span> <span class="toc-text">Power rating: the Goldilocks zone</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feature-selection"><span class="toc-number">3.</span> <span class="toc-text">Feature selection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP-user-stories"><span class="toc-number">4.</span> <span class="toc-text">MVP user stories</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logging-a-session"><span class="toc-number">4.1.</span> <span class="toc-text">Logging a session</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reviewing-past-sessions"><span class="toc-number">4.2.</span> <span class="toc-text">Reviewing past sessions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Editing-or-deleting-a-session"><span class="toc-number">4.3.</span> <span class="toc-text">Editing or deleting a session</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Where%E2%80%99s-the-rest-of-the-functionality"><span class="toc-number">5.</span> <span class="toc-text">Where’s the rest of the functionality?</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://je55ek.github.io/2025/09/05/wind-journal-02/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&text=Wind Journal: Minimum Viable Product"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&is_video=false&description=Wind Journal: Minimum Viable Product"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Wind Journal: Minimum Viable Product&body=Check out this article: https://je55ek.github.io/2025/09/05/wind-journal-02/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&title=Wind Journal: Minimum Viable Product"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://je55ek.github.io/2025/09/05/wind-journal-02/&name=Wind Journal: Minimum Viable Product&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://je55ek.github.io/2025/09/05/wind-journal-02/&t=Wind Journal: Minimum Viable Product"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Jesse Kelly
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Posts</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

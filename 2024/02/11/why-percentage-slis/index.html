@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Service level indicators (SLIs) are often measured using percentages. For example, Google recommends defining SLIs in terms of the ratio of good events to valid events: good eventsvalid events×100%\fr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Use Percentage-Based Service Level Indicators?">
+<meta property="og:url" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/index.html">
+<meta property="og:site_name" content="Jesse Kelly">
+<meta property="og:description" content="Service level indicators (SLIs) are often measured using percentages. For example, Google recommends defining SLIs in terms of the ratio of good events to valid events: good eventsvalid events×100%\fr">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/p99a.png">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/p99b.png">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/p99c.png">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/ratioa.png">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/ratiob.png">
+<meta property="og:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/ratioc.png">
+<meta property="article:published_time" content="2024-02-11T21:07:30.000Z">
+<meta property="article:modified_time" content="2025-09-15T17:41:32.021Z">
+<meta property="article:author" content="Jesse Kelly">
+<meta property="article:tag" content="SRE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://je55ek.github.io/2024/02/11/why-percentage-slis/p99a.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Why Use Percentage-Based Service Level Indicators?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Posts</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/09/04/wind-journal-01/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://je55ek.github.io/2024/02/11/why-percentage-slis/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&text=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&is_video=false&description=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Why Use Percentage-Based Service Level Indicators?&body=Check out this article: https://je55ek.github.io/2024/02/11/why-percentage-slis/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&name=Why Use Percentage-Based Service Level Indicators?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://je55ek.github.io/2024/02/11/why-percentage-slis/&t=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P99-Based-SLI"><span class="toc-number">1.</span> <span class="toc-text">P99-Based SLI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Percentage-Based-SLI"><span class="toc-number">2.</span> <span class="toc-text">Percentage-Based SLI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indicators-and-Metrics"><span class="toc-number">3.</span> <span class="toc-text">Indicators and Metrics</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Why Use Percentage-Based Service Level Indicators?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jesse Kelly</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-02-11T21:07:30.000Z" class="dt-published" itemprop="datePublished">2024-02-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/SRE/" rel="tag">SRE</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Service level indicators (SLIs) are often measured using percentages.
+For example, <a target="_blank" rel="noopener" href="https://cloud.google.com/blog/products/management-tools/practical-guide-to-setting-slos">Google recommends</a> defining SLIs in terms of the ratio of good events to valid events:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mtext>good events</mtext><mtext>valid events</mtext></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\frac{\text{good events}}{\text{valid events}} \times 100 \%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">valid events</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">good events</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span>
+
+<p>This is intuitive for things that we naturally count, like the number of HTTP requests handled by a web service.
+In such cases, it’s clear that we plug in something like “the number of successful HTTP requests” for “good events” in the SLI equation.</p>
+<p>But what about a continuous quantity like HTTP request latency?
+It can be less intuitive to define a percentage-based SLI for latency.
+Consider defining a latency-based SLI for a web service as:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mtext>requests &lt; 400 ms</mtext><mtext>valid requests</mtext></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\frac{\text{requests &lt; 400 ms}}{\text{valid requests}} \times 100 \%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.2019em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">valid requests</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">requests &lt; 400 ms</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span>
+
+<p>If we’re saying requests should be under 400 milliseconds, isn’t that a service level <em>target</em> (SLT) rather than an indicator?
+Why don’t we just say that our SLI is “the 99th percentile of request latency” and SLT is “400 milliseconds”?</p>
+<h3 id="P99-Based-SLI"><a href="#P99-Based-SLI" class="headerlink" title="P99-Based SLI"></a>P99-Based SLI</h3><p>Let’s see what happens if we use the 99th percentile (P99) of request latency as a service level indicator for an imaginary web service that has an SLT of “less than 400 milliseconds”.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLI</mtext><mo>:</mo><mo>=</mo><mi>P</mi><mn>99</mn><mo stretchy="false">(</mo><mtext>request latency</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{SLI} := P99(\text{request latency})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLI</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord">99</span><span class="mopen">(</span><span class="mord text"><span class="mord">request latency</span></span><span class="mclose">)</span></span></span></span></span>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>:</mo><mo>=</mo><mtext>SLI</mtext><mo>&lt;</mo><mn>400</mn><mtext>ms</mtext></mrow><annotation encoding="application/x-tex">\text{SLT} := \text{SLI} &lt; 400 \text{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord text"><span class="mord">SLI</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span><span class="mord text"><span class="mord">ms</span></span></span></span></span></span>
+
+<p>Imagine a histogram of request latency for our service:</p>
+<img src="/2024/02/11/why-percentage-slis/p99a.png" class="" width="600" title="Histogram of exponentially-distributed request latency with slowest one percent of requests highlighted">
+
+<p>We can see from histogram <code>(a)</code> that 99% of all requests completed in less than 400 milliseconds.
+Said another way: the worst 1% of requests took at least 400 milliseconds to complete.
+Our P99 is 400 milliseconds, which is not less than 400 milliseconds, so we’re not meeting our SLT.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>=</mo><mn>400</mn><mtext> ms</mtext><mo><mover><mo><mo>&lt;</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">?</mo></mover></mo><mn>400</mn><mtext>ms</mtext><mo>=</mo><mi>u</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\text{SLT} = 400\text{ ms} \stackrel{?}{&lt;} 400\text {ms} = unmet</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3643em;vertical-align:-0.0391em;"></span><span class="mord">400</span><span class="mord text"><span class="mord"> ms</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3252em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">&lt;</span></span></span><span style="top:-3.7391em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">?</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0391em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span><span class="mord text"><span class="mord">ms</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></span>
+
+<p>By comparing our SLI to our SLT we get a sense of “how bad” our service is.
+In this case, it’s not very bad; our SLI is right at the threshold of our target.</p>
+<p>Now imagine we deploy a change to our system that results in new distribution for request latency
+that is nearly the same, but in which the worst 1% of requests shift to the right a bit (histogram <code>(b)</code>).</p>
+<img src="/2024/02/11/why-percentage-slis/p99b.png" class="" width="600" title="Histogram of exponentially-distributed request latency with slowest one percent of requests highlighted">
+
+<p>Our SLI is now 500 milliseconds. How much worse is our service as a result of our change?
+Well, you might say it’s 25% worse, since our original SLI was 400 milliseconds, and now it has
+increased by 25% to 500 milliseconds.
+But 99% of requests are still taking at most 400 milliseconds, so isn’t it fair to say
+we’re providing <em>nearly</em> the same level of service?</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>=</mo><mn>500</mn><mtext> ms</mtext><mo><mover><mo><mo>&lt;</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">?</mo></mover></mo><mn>400</mn><mtext>ms</mtext><mo>=</mo><mi>u</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\text{SLT} = 500\text{ ms} \stackrel{?}{&lt;} 400\text {ms} = unmet</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3643em;vertical-align:-0.0391em;"></span><span class="mord">500</span><span class="mord text"><span class="mord"> ms</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3252em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">&lt;</span></span></span><span style="top:-3.7391em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">?</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0391em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span><span class="mord text"><span class="mord">ms</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></span>
+
+<p>If we just compare P99 latency to our target of 400 milliseconds, it seems like we’re doing
+a lot worse than we actually are.</p>
+<p>We might object that this situation is too contrived.
+After all, isn’t it more likely that an increase in P99 is the result of the entire latency distribution shifting to the right?
+Let’s see what happens in such a case, which is represented in histogram <code>(c)</code>.</p>
+<img src="/2024/02/11/why-percentage-slis/p99c.png" class="" width="600" title="Histogram of exponentially-distributed request latency weighted towards four hundred milliseconds with slowest one percent of requests highlighted">
+
+<p>Whereas before most requests fell into the 0 to 100 milliseconds bucket in the latency histogram,
+now the 400 to 500 milliseconds bucket is the fullest.
+What is the P99 in this case? It’s still only 400 milliseconds, the same as it was in histogram <code>(a)</code>!
+Is it really true that we’re providing the same level of service now as we were before?
+It hardly seems fair to say so when the fraction of high-latency requests has increased.</p>
+<h3 id="Percentage-Based-SLI"><a href="#Percentage-Based-SLI" class="headerlink" title="Percentage-Based SLI"></a>Percentage-Based SLI</h3><p>Now let’s see what would have happened if we had used a percentage-based SLI for our system.
+We’ll define our SLI to be the percentage of requests that complete in less than 400 milliseconds, and our SLT to “SLI is greater than 99%”.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLI</mtext><mo>:</mo><mo>=</mo><mfrac><mtext>requests &lt; 400 ms</mtext><mtext>valid requests</mtext></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\text{SLI} := \frac{\text{requests &lt; 400 ms}}{\text{valid requests}} \times 100 \%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLI</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2019em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">valid requests</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">requests &lt; 400 ms</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>:</mo><mo>=</mo><mtext>SLI</mtext><mo>&gt;</mo><mn>99</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\text{SLT} := \text{SLI} &gt; 99\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord text"><span class="mord">SLI</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">99%</span></span></span></span></span>
+
+<p>Let’s revisit histogram <code>(a)</code>, but this time let’s shade in the area that represents all of the
+requests that completed in less than 400 milliseconds.</p>
+<img src="/2024/02/11/why-percentage-slis/ratioa.png" class="" width="600" title="Histogram of exponentially-distributed request latency with fastest ninety nine percent of requests highlighted">
+
+<p>We see that 99% of requests completed in under 400 milliseconds, so the value of our SLI is 99%.
+We’re still not meeting our SLT, but we once again see that we’re not doing <em>that</em> badly, since our SLI is
+right on the threshold of our SLT.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>=</mo><mn>99</mn><mi mathvariant="normal">%</mi><mo><mover><mo><mo>&gt;</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">?</mo></mover></mo><mn>99</mn><mi mathvariant="normal">%</mi><mo>=</mo><mi>u</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\text{SLT} = 99\% \stackrel{?}{&gt;} 99\% = unmet</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3808em;vertical-align:-0.0556em;"></span><span class="mord">99%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3252em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">&gt;</span></span></span><span style="top:-3.7391em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">?</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0391em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">99%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></span>
+
+<p>What happens when we make a change to our service that increases the latency for the worst 1% of requests?</p>
+<img src="/2024/02/11/why-percentage-slis/ratiob.png" class="" width="600" title="Histogram of exponentially-distributed request latency with fastest ninety nine percent of requests highlighted">
+
+<p>In histogram <code>(b)</code>, the percentage of requests that complete in less than 400 milliseconds is the same as it was in histogram <code>(a)</code>, so our SLI is still 99%.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>=</mo><mn>99</mn><mi mathvariant="normal">%</mi><mo><mover><mo><mo>&gt;</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">?</mo></mover></mo><mn>99</mn><mi mathvariant="normal">%</mi><mo>=</mo><mi>u</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\text{SLT} = 99\% \stackrel{?}{&gt;} 99\% = unmet</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3808em;vertical-align:-0.0556em;"></span><span class="mord">99%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3252em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">&gt;</span></span></span><span style="top:-3.7391em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">?</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0391em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">99%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></span>
+
+<p>Comparing our percentage-based SLI and SLT, we lose sight of the fact that the worst 1% of requests are a little slower than before, but we <em>gain</em> insight into the level of service that <em>all</em> of our customers are experiencing, rather than just those whose requests fall within the worst 1%.</p>
+<p>Sure, the worst 1% of requests are a little worse than before, but our SLI helps us feel confident
+that 99% of customers’ requests are still fast enough.</p>
+<p>Finally, let’s take another look at histogram <code>(c)</code>, this time through the lens of a percentage-based SLI.</p>
+<img src="/2024/02/11/why-percentage-slis/ratioc.png" class="" width="600" title="Histogram of exponentially-distributed request latency weighted towards four hundred milliseconds with slowest seventy percent of requests highlighted">
+
+<p>In histogram <code>(c)</code> 70% of requests completed in less than 400 milliseconds, so the value of our SLI is 70%.</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>SLT</mtext><mo>=</mo><mn>70</mn><mi mathvariant="normal">%</mi><mo><mover><mo><mo>&gt;</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">?</mo></mover></mo><mn>99</mn><mi mathvariant="normal">%</mi><mo>=</mo><mi>u</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\text{SLT} = 70\% \stackrel{?}{&gt;} 99\% = unmet</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SLT</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3808em;vertical-align:-0.0556em;"></span><span class="mord">70%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3252em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">&gt;</span></span></span><span style="top:-3.7391em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">?</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0391em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">99%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></span>
+
+<p>Comparing our percentage-based SLI and SLT, we see we’re under-serving customers by about 29 percentage points.
+Unlike the latency-based SLI&#x2F;SLT, which told us that histograms <code>(c)</code> and <code>(a)</code> represented roughly the same level of service, the gap highlighted by a percentage-based SLI and SLT aligns better with our intuition about how much worse we’re actually doing.</p>
+<h3 id="Indicators-and-Metrics"><a href="#Indicators-and-Metrics" class="headerlink" title="Indicators and Metrics"></a>Indicators and Metrics</h3><p>Percentage-based service level indicators tend to align with our intuition about what it means
+to provide a “high” versus “low” level of service.
+When defining service level indicators, keep in mind that an SLI’s raison d’être is to
+<em>indicate</em> how well your service is doing its job.</p>
+<p>Metrics like P99 latency are useful in their own right; using a percentage-based SLI doesn’t
+mean that you shouldn’t <em>also</em> track P99 or other summary statistics.
+But when you want quick insight into how well you’re serving <em>all</em> of your customers, consider reaching for a percentage-based service level indicator.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P99-Based-SLI"><span class="toc-number">1.</span> <span class="toc-text">P99-Based SLI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Percentage-Based-SLI"><span class="toc-number">2.</span> <span class="toc-text">Percentage-Based SLI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indicators-and-Metrics"><span class="toc-number">3.</span> <span class="toc-text">Indicators and Metrics</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://je55ek.github.io/2024/02/11/why-percentage-slis/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&text=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&is_video=false&description=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Why Use Percentage-Based Service Level Indicators?&body=Check out this article: https://je55ek.github.io/2024/02/11/why-percentage-slis/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&title=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://je55ek.github.io/2024/02/11/why-percentage-slis/&name=Why Use Percentage-Based Service Level Indicators?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://je55ek.github.io/2024/02/11/why-percentage-slis/&t=Why Use Percentage-Based Service Level Indicators?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Jesse Kelly
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Posts</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
